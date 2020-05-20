@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Website!</title>
-    </head>
-    <body>
-        <h1>Project 1</h1>
+{% extends "layout.html" %}
 
-        <a href="{{ url_for('signUp') }}">Sign Up</a>
-    </body>
-</html>
+{% block heading %}
+    Project 1
+{% endblock %}
+
+{% block body %}
+    <a href="{{ url_for('signUp') }}">Sign Up</a>
+{% endblock %}

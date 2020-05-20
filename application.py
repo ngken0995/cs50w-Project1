@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, request
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -25,6 +25,19 @@ db = scoped_session(sessionmaker(bind=engine))
 def index():
     return render_template("index.html")
 
-@app.route("/sign-up")
+@app.route("/sign-up", methods=["GET", "POST"])
 def signUp():
-    return render_template("signUp.html")
+    if request.method == "GET":
+        return render_template("signUp.html")
+    else:
+        username = request.form.get("username").upper()
+        password = request.form.get("password")
+
+        if db.execute("SELECT * FROM account WHERE username = :username", {"username": username}).rowcount == 0:
+            db.execute("INSERT INTO account (username, password) VALUES (:username, :password)", {"username":username, "password":password})
+            db.commit()
+            return render_template("success.html")
+        else:
+            return render_template("error.html", message="Username taken.")
+
+

@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Website!</title>
-    </head>
-    <body>
-        <h1>Sign Up</h1>
+{% extends "layout.html" %}
 
-        <div>
-            
-        </div>
-    </body>
-</html>
+{% block heading %}
+    Sign Up Page
+{% endblock %}
+
+{% block body %}
+
+    <a href="{{ url_for('index') }}">Home Page</a>
+
+    <form action="{{ url_for('signUp') }}" method="post">
+        <input type="text" name="username" placeholder="Enter Username">
+        <input type="password" name="password" placeholder="password">
+        <button>Submit</button>
+    </form>
+{% endblock %}
