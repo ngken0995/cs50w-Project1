@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}
+{% block heading %}
     Success!
 {% endblock %}
 
@@ -8,6 +8,6 @@
     <h1>Success!</h1>
 
     <p>You have successfully created an account.</p>
-    <a href="{{ url_for('index') }}">back to homepage</a>
+    <a href="{{ url_for('login') }}">Login</a>
 
 {% endblock %}
